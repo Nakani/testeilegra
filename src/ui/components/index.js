@@ -1,5 +1,5 @@
 export { ChatBot } from './bot/bot.component'
 export { BaseComponent } from './base/index'
 export { BannerComponent } from './banner/index'
-export { QrCodeComponent } from './base/index'
-export { TabBarButton, TabBarMore } from './tabBar/index'
+export { TabBarButton } from './tabBar/index'
+export { ListComponent } from './lists/index'

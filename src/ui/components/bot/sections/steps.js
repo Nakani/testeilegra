@@ -1,8 +1,5 @@
 import React from 'react';
-import { requisitions } from '../../../../services/requisitions'
-import {
-    QrCodeComponent
-} from '../../qrcode/qrcode.component'
+import { requisitions } from 'services/requisitions'
 import { Dialogflow } from './dialogflow'
 
 export const getSteps = (setState, getState) => {
@@ -38,76 +35,10 @@ export const getSteps = (setState, getState) => {
         {
             id: 'optionInit',
             options: [
-                { value: 1, label: 'escanear QrCode! 😍', trigger: 'qrcode' },
-                { value: 2, label: 'Configurar WhatsApp!', trigger: 'AboutWhats' },
+                { value: 1, label: 'Me conte sobre o projeto! 😍', trigger: 'end' },
                 { value: 3, label: 'preciso de ajuda!', trigger: 'outros' },
             ],
         },
-
-        {
-            id: 'qrcode',
-            component: <QrCodeComponent />,
-            waitAction: true,
-            trigger: ({ value }) => {
-                return 'InitPoint'
-            }
-        },
-
-        {
-            id: 'InitPoint',
-            message: (value) => {
-                console.log(this.props)
-
-                return value.previousValue.message
-            },
-            trigger: 'InitPointMessage',
-        },
-
-        {
-            id: 'InitPointMessage',
-            message: (value) => {
-                return 'Uhuu! 🤑🤑🤑'
-            },
-            trigger: 'initOptionwithdraw',
-        },
-
-        {
-            id: 'optionHelp',
-            options: [
-                { value: 1, label: 'Não consigo escanear minha nota fiscal! 🙄', trigger: 'end' },
-                { value: 2, label: 'como resgatar meus pontos! 🤔', trigger: 'end' },
-                { value: 3, label: 'outros! 😬', trigger: 'outros' },
-            ],
-        },
-
-        {
-            id: 'initOptionwithdraw',
-            message: 'Espero que faça bom proveito ok?',
-            trigger: 'helpEnd'
-        },
-
-        {
-            id: 'helpEnd',
-            message: 'Posso te ajudar com mais alguma coisa?',
-            trigger: 'optionwithdraw'
-        },
-
-
-
-        {
-            id: 'optionwithdraw',
-            options: [
-                { value: 1, label: 'Escanear outra nota!', trigger: 'qrcodeAgain' },
-                { value: 2, label: 'como resgatar meus pontos! 🤔', trigger: 'end' },
-            ],
-        },
-
-        {
-            id: 'qrcodeAgain',
-            message: 'Lembrando que o desconto é por nota fiscal ok?',
-            trigger: 'qrcode'
-        },
-
 
         {
             id: 'outros',

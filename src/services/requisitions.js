@@ -1,4 +1,5 @@
 import axios from 'axios';
+const keyYoutube = 'AIzaSyDvQX-wWaGfu-qhbtJYXor3rkQ3YVqkDHQ'
 const config = {
     headers: {
         'Content-Type': 'application/json'
@@ -7,8 +8,8 @@ const config = {
 
 async function getLists(data) {
     try {
-        const response = await axios.get(``, config)
-        return response.data
+        const response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=10&playlistId=${data}&key=${keyYoutube}`, config)
+        return response.data.items
 
     }
     catch (error) {
@@ -34,10 +35,20 @@ async function sendMessageWhats(message) {
     }
 }
 
+async function getVideos(type) {
 
+    try {
+        const response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?playlistId=${type}&maxResults=${'10'}&part=snippet%2CcontentDetails&key=${keyYoutube}`, config)
+        return response.data
+    }
 
+    catch (error) {
+        console.log(error)
+    }
+}
 
 export const requisitions = {
     getLists,
     sendMessageWhats,
+    getVideos,
 };

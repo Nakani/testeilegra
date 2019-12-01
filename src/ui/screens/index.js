@@ -1,5 +1,5 @@
 export { HomeScreen } from './homeScreen/index'
+export { DetailScreen } from './detailScreen/index'
 export { PerfilScreen } from './perfilScreen/index'
-export { DiscountScreen } from './discountScreen/index'
+export { SearchScreen } from './searchScreen/index'
 export { BotScreen } from './botScreen/index'
-export { ScanScreen } from './scanScreen/index'

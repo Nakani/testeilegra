@@ -37,7 +37,8 @@ height:50px
 export const TitleCategory = styled.Text`
 font-size:20px
 font-weight:600
-color:#333333
+color:#fff
+margin-bottom:30px
 
 `
 export const ContentBody = styled.View`
@@ -89,8 +90,6 @@ export const Styles = StyleSheet.create({
     },
 
     searchContent: {
-
-        //width: '100%',
         padding: 10,
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -99,7 +98,8 @@ export const Styles = StyleSheet.create({
         borderRadius: 20,
         shadowOpacity: 0.2,
         shadowRadius: 1,
-        shadowOffset: { width: 2, height: 2 }
+        shadowOffset: { width: 2, height: 2 },
+        marginBottom: 30,
     },
 
 

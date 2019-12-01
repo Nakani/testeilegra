@@ -18,7 +18,7 @@ export const Styles = StyleSheet.create({
 
     text: {
         color: '#fff',
-        fontSize: 30,
+        fontSize: 20,
         fontWeight: 'bold',
         backgroundColor: 'rgba(37, 37, 37, 0.3)',
         padding: 20,

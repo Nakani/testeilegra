@@ -1,9 +1,10 @@
 const colors = {
     dark: '#252525',
+    white: '#fff',
     transparentDark: 'rgba(37, 37, 37, 0.7)',
-    primary: '#fff',
+    primary: '#252525',
     secondary: '#6e7073',
-    highlight: '#1EA2FF',//em estudo
+    highlight: '#E50B13',//em estudo
 }
 const category = {
     backgroundColor: colors.primary
@@ -13,11 +14,12 @@ const themeApp = {
     backgroundHeader: colors.dark,
     backgroundBody: colors.dark,
     backgroundTabBar: colors.primary,
+
 }
 
 const themeBot = {
-    botFontColor: colors.dark,
-    userFontColor: colors.dark,
+    botFontColor: colors.white,
+    userFontColor: colors.white,
     borderColor: colors.highlight,
     optionBubbleColor: colors.highlight,
 }

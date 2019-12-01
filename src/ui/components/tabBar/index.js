@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { View, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
@@ -10,13 +10,13 @@ export function TabBarButton(props) {
             case 'Home':
                 iconName = 'home';
                 break;
-            case 'Descontos':
-                iconName = 'ticket';
+            case 'Search':
+                iconName = 'search';
                 break;
             case 'Chat':
                 iconName = 'comment';
                 break;
-            case 'Eu':
+            case 'My':
                 iconName = 'user';
                 break;
         }
@@ -30,17 +30,6 @@ export function TabBarButton(props) {
     return (
         <View>
             {renderTab(props)}
-        </View>
-    )
-
-}
-
-export function TabBarMore(props) {
-    return (
-        <View>
-            <Text>
-                aqui
-           </Text>
         </View>
     )
 }

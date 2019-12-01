@@ -4,6 +4,7 @@ import {
     Text,
     FlatList,
 } from 'react-native';
+import { Content, Tab, Tabs } from 'native-base';
 import { Styles } from './category.style'
 
 const DATA = [
@@ -75,8 +76,60 @@ export function CategorySection(props) {
 
     return (
         <View style={Styles.container}>
-            {renderCategory()}
+            <Tabs
+                style={{ backgroundColor: 'transparent' }}
+            >
+                <Tab heading="Ação" style={{ backgroundColor: 'transparent' }}>
+                    <Tab1 />
+                </Tab>
+                <Tab heading="Romance" style={{ backgroundColor: 'transparent' }}>
+                    <Tab2 />
+                </Tab>
+                <Tab heading="Aventura" style={{ backgroundColor: 'transparent' }}>
+                    <Tab3 />
+                </Tab>
+                <Tab heading="Policial" style={{ backgroundColor: 'transparent' }}>
+                    <Tab4 />
+                </Tab>
+            </Tabs>
         </View>
     );
 
+}
+
+function Tab1() {
+    return (
+        <View style={{ backgroundColor: '#ccc', }}>
+            <Text>
+                Aqui
+            </Text>
+        </View>
+    )
+}
+function Tab2() {
+    return (
+        <View>
+            <Text>
+                Aqui
+            </Text>
+        </View>
+    )
+}
+function Tab3() {
+    return (
+        <View>
+            <Text>
+                Aqui
+            </Text>
+        </View>
+    )
+}
+function Tab4() {
+    return (
+        <View>
+            <Text>
+                Aqui
+            </Text>
+        </View>
+    )
 }

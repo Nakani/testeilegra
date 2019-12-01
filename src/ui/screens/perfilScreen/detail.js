@@ -9,17 +9,11 @@ import {
     Alert
 
 } from 'react-native';
-import {
-    Button,
-
-} from 'react-native-ui-kitten';
 
 import { Styles } from './styles'
 import { ScrollView } from 'react-native-gesture-handler';
 
-
-
-export default function DetailScreen(props) {
+export function DetailScreen(props) {
     console.log('detail', props)
     function renderBody() {
         return (

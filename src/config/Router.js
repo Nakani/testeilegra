@@ -1,42 +1,33 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { theme } from '../theme'
-import { TabBarButton, QrCodeComponent } from '../ui/components'
-import { multibar, MultiBarToggle } from 'react-native-multibar'
+import { TabBarButton } from '../ui/components'
 //navigation
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 //UI
 import {
-    HomeScreen,
-    DiscountScreen,
+    HomeContainer,
+    DetailContainer
+} from 'containers'
+import {
+    SearchScreen,
     PerfilScreen,
     BotScreen,
-    ScanScreen
 } from '../ui/screens'
 
 const homeStack = createStackNavigator({
     Home: {
-        screen: HomeScreen,
+        screen: HomeContainer,
         navigationOptions: {
             header: null,
         },
     },
 });
 
-const discountStack = createStackNavigator({
-    Discount: {
-        screen: DiscountScreen,
-        navigationOptions: {
-            header: null,
-        },
-    },
-});
-
-const scanCodeStack = createStackNavigator({
-    ScanCode: {
-        screen: ScanScreen,
+const searchStack = createStackNavigator({
+    Search: {
+        screen: SearchScreen,
         navigationOptions: {
             header: null,
         },
@@ -72,65 +63,9 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
 
 const TabNavigator = createBottomTabNavigator({
     Home: homeStack,
-    Descontos: discountStack,
-    MultiBar: {
-        screen: () => null,
-        navigationOptions: ({ navigation }) => ({
-            tabBarIcon: () => (
-                <MultiBarToggle
-                    navigation={navigation}
-                    actionSize={30}
-                    routes={[
-                        {
-                            routeName: scanCodeStack,
-                            color: '#fff',
-                            icon: (
-                                <Icon
-                                    name="qrcode"
-                                    color="#333333"
-                                    size={15}
-                                />
-                            )
-                        },
-                        {
-                            routeName: homeStack,
-                            color: '#fff',
-                            icon: (
-                                <Icon
-                                    name="search"
-                                    color="#333333"
-                                    size={15}
-                                />
-                            )
-                        },
-                        {
-                            routeName: homeStack,
-                            color: '#fff',
-                            icon: (
-                                <Icon
-                                    name="bell"
-                                    color="#333333"
-                                    size={15}
-                                />
-                            )
-                        },
-                    ]}
-                    icon={(
-                        <Icon
-                            name="plus"
-                            color="#FFFFFF"
-                            size={24}
-                        />
-                    )}
-                />
-            )
-        }),
-        params: {
-            navigationDisabled: true
-        }
-    },
+    Search: searchStack,
     Chat: botStack,
-    Eu: userStack,
+    My: userStack,
 },
     {
         defaultNavigationOptions: ({ navigation }) => ({
@@ -146,7 +81,6 @@ const TabNavigator = createBottomTabNavigator({
                 paddingBottom: 5
             }
         },
-        tabBarComponent: multibar,
     },
 
 );

@@ -1,120 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import {
     View,
-    Text,
-    FlatList,
-    TouchableOpacity,
-    Image,
-    ImageBackground
 } from 'react-native';
 import {
     Container,
-    ContentBody,
     ContentHeader,
     ScrollView,
-    TitleHome,
     TitleCategory,
     Category,
-    Styles
+    Styles,
 } from './home.style'
-import { Avatar } from 'react-native-elements'
 import { CategorySection } from './sections/category/index'
-import ImageOverlay from "react-native-image-overlay";
-import { BaseComponent, BannerComponent } from '../../components'
-import { dialogflow } from '../../../services/dialogflow'
+import { BaseComponent, BannerComponent, ListComponent } from '../../components'
 
+export function HomeScreen(props) {
 
-const POPULAR = [
-    {
-        id: '0',
-        title: 'PetShop Mundo Animal',
-        rating: '5',
-        discount: '10%',
-        services: 'banho e tosa',
-        distancy: '5',
-        background: '../../../assets/images/gettyimages-928648602-612x612.jpg'
-    },
-    {
-        id: '1',
-        title: 'Clínica veterinária Águia',
-        rating: '5',
-        discount: '20%',
-        services: 'Veterinários',
-        distancy: '20',
-        background: '../../../assets/images/gettyimages-928648602-612x612.jpg'
-    },
-    {
-        id: '2',
-        title: 'Hotel Canino',
-        discount: '30%',
-        rating: '5',
-        distancy: '10',
-        services: 'Veterinários',
-        background: '../../../assets/imagettyimages-993111000-612x612'
-    },
-];
-
-function ItemCard(item) {
-    console.log(item)
-    return (
-        <View style={Styles.itemCard}>
-            <TouchableOpacity
-                style={{
-                    width: '100%',
-                    height: '100%',
-                    flex: 1,
-                }}>
-                <ImageOverlay
-                    source={require('../../../assets/images/gettyimages-993111000-612x612.jpg')}
-
-                >
-                    <Text style={Styles.titlePopular}>
-                        {item.data.title}
-                    </Text>
-                    <Text style={Styles.textPopular}>
-                        produtos e serviços com até: {item.data.discount}
-                    </Text>
-                    <Text style={Styles.textPopular}>
-                        Categoria:{item.data.services}
-                    </Text>
-                    <Text style={Styles.textPopular}>
-                        {item.data.distancy}km de você
-                </Text>
-                </ImageOverlay>
-            </TouchableOpacity>
-        </View >
-    );
-}
-
-export function HomeScreen() {
-    const [welcome, setWelcome] = useState([]);
-
-    useEffect(() => {
-    }, []);
-
-    function renderBanner() {
+    function renderBanner(data) {
+        console.log('data', props)
         return (
             <View style={Styles.contentBanner}>
-                <BannerComponent />
+                <BannerComponent data={data} goTo={props.goTo} />
             </View>
         )
     }
 
-    function renderDestaques() {
+    function renderCategory(data) {
         return (
-            <FlatList
-                data={POPULAR}
-                renderItem={({ item }) => <ItemCard data={item} />}
-                keyExtractor={item => item.id}
-                style={{ flex: 1 }}
-            />
+            <ListComponent screen='home' data={data} />
         )
     }
 
-    function renderHeader() {
+
+
+    function renderHeader(data) {
         return (
             <ContentHeader>
-                {renderBanner()}
+                {renderBanner(data)}
                 <Category>
                     <TitleCategory>
                         Categorias:
@@ -125,24 +46,28 @@ export function HomeScreen() {
         )
     }
 
-    function renderBody() {
+    function renderBody(data) {
         return (
             <View style={Styles.contentBody}>
                 <TitleCategory>
-                    Destaques perto de você:
+                    Destaques:
                     </TitleCategory>
-                {renderDestaques()}
+                {renderCategory(data)}
+                <TitleCategory>
+                    Recomendados:
+                </TitleCategory>
+                {/* {renderCategory()} */}
             </View>
         )
     }
-
+    console.log('homeAqui', props)
     return (
         <>
             <BaseComponent safeAreaView={false}>
                 <Container>
                     <ScrollView>
-                        {renderHeader()}
-                        {renderBody()}
+                        {renderHeader(props.banners)}
+                        {renderBody(props.data)}
                     </ScrollView>
                 </Container>
 

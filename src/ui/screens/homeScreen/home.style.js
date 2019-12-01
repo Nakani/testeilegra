@@ -38,6 +38,7 @@ export const TitleCategory = styled.Text`
 font-size:20px
 font-weight:600
 color:#333333
+margin-bottom:30
 
 `
 export const ContentBody = styled.View`
@@ -52,14 +53,16 @@ export const Styles = StyleSheet.create({
 
     itemCard: {
         flex: 1,
-        width: '100%',
-        // height: 200,
-        marginTop: 15,
+        width: 150,
+        height: 100,
+        marginLeft: 15,
+        resizeMode: 'contain',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        marginBottom: 30,
+        borderWidth: 1
     },
-
 
     titlePopular: {
         fontSize: 30,
@@ -87,6 +90,7 @@ export const Styles = StyleSheet.create({
         height: 300,
         bottom: 10
     },
+
     contentBody: {
         flex: 1,
         paddingLeft: 5,

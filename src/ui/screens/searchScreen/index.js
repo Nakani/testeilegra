@@ -5,6 +5,7 @@ import {
     FlatList,
     Image,
     TouchableOpacity,
+    TouchableHighlight,
 
 } from 'react-native';
 import {
@@ -14,14 +15,10 @@ import {
     TitleCategory,
     Category,
     Styles
-} from './discount.style'
-
-import { List, ListItem, Thumbnail, Left, Body, Right, Button } from 'native-base';
-
-
-import { CategorySection } from './sections/category/index'
+} from './search.style'
+import LottieView from 'lottie-react-native';
 import { Input } from "react-native-elements";
-import { BaseComponent } from '../../components'
+import { BaseComponent, ListComponent } from '../../components'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
@@ -107,33 +104,10 @@ const POPULAR = [
 
 ];
 
-function ItemCard(item) {
-    console.log(item)
-    return (
-        <View style={Styles.itemCard}>
-            <ListItem thumbnail>
-                <Left>
-                    <Thumbnail
-                        square
-                        style={Styles.images}
-                        source={require('../../../assets/images/gettyimages-928648602-612x612.jpg')} />
-                </Left>
-                <Body>
-                    <Text>{item.data.title}</Text>
-                    <Text note numberOfLines={1}>Desconto de {item.data.discount}</Text>
-                </Body>
-                <Right>
-                    <Button transparent>
-                        <Text>Ver</Text>
-                    </Button>
-                </Right>
-            </ListItem>
-        </View >
-    );
-}
 
-export function DiscountScreen() {
-    const [welcome, setWelcome] = useState([]);
+
+export function SearchScreen() {
+    const [search, setSearch] = useState([]);
 
     useEffect(() => {
 
@@ -143,14 +117,15 @@ export function DiscountScreen() {
         return (
             <View style={Styles.searchContent}>
                 <Input
-                    placeholder=' Ex: Ração Golden Retriever'
+                    placeholder='Digite sua pesquisa...'
                     rightIcon={
-                        <Icon
-                            name='search'
-                            size={25}
-                            color='#333333'
-                            onPress={() => alert('pesquisar')}
-                        />
+                        <TouchableOpacity
+                            //style={{ flex: 1, }}
+                            onPress={() => setSearch('teste')}
+                        >
+                            <Icon name={'search'} size={24} />
+
+                        </TouchableOpacity>
                     }
                     style={{ borderWidth: 0 }}
                 />
@@ -160,37 +135,25 @@ export function DiscountScreen() {
 
     function renderFilters() {
         return (
-            <FlatList
-                data={POPULAR}
-                renderItem={({ item }) => <ItemCard data={item} />}
-                keyExtractor={item => item.id}
-                style={{ flex: 1 }}
-            />
-        )
-    }
-
-    function renderHeader() {
-        return (
-            <ContentHeader>
-                <Category>
-                    <TitleCategory>
-                        Categorias:
-                    </TitleCategory>
-                    <CategorySection />
-                </Category>
-            </ContentHeader>
+            <ListComponent screen='search' data={POPULAR} />
         )
     }
 
     function renderBody() {
-        return (
+        return search != '' ? (
             <View style={Styles.contentBody}>
                 <TitleCategory>
-                    Destaques:
+                    Resultado:
                     </TitleCategory>
                 {renderFilters()}
             </View>
-        )
+        ) : (
+                <View style={Styles.contentBody}>
+                    <View>
+
+                    </View>
+                </View>
+            )
     }
 
     return (
@@ -198,8 +161,8 @@ export function DiscountScreen() {
             <BaseComponent>
                 <Container>
                     {renderSearch()}
+
                     <ScrollView>
-                        {renderHeader()}
                         {renderBody()}
                     </ScrollView>
                 </Container>

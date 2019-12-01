@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Bot from 'react-native-chatbot';
-import { QrCodeComponent } from '../qrcode/qrcode.component'
 import { theme } from 'theme'
 import { getSteps } from './sections/steps'
 
