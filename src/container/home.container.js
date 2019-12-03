@@ -2,6 +2,7 @@ import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { getLists } from 'reduxs'
 import { HomeScreen } from 'screens'
+import store from 'react-native-simple-store';
 
 export function HomeContainer(props) {
     const dispatch = useDispatch()
@@ -16,6 +17,7 @@ export function HomeContainer(props) {
     useEffect(() => {
         listBanners()
         listDestaques()
+        listRecommend()
     }, []);
 
     useLayoutEffect(() => {
@@ -26,15 +28,12 @@ export function HomeContainer(props) {
     }, [listsMovies])
 
     function ListingMovies(propsLists) {
-        console.log(propsLists[0].snippet.playlistId)
         switch (propsLists[0].snippet.playlistId) {
             case idChannelBanner:
-                console.log('banners', listsMovies)
                 setBanners(listsMovies)
                 break;
 
             case idChannelHighlights:
-                console.log('destques', listsMovies)
                 setDestaques(listsMovies)
                 break;
         }
@@ -51,8 +50,25 @@ export function HomeContainer(props) {
         getLists(dispatch, idForHighlights)
     }
 
+    function listRecommend() {
+        store.get('recommend').then(
+            res => {
+                console.log(res)
+                setRecomendados(res)
+            }
+        )
+    }
+
+    useLayoutEffect(() => {
+        // ListingMovies(listsMovies)
+        console.log('homeContainer', recomendados)
+        // if (listsMovies.lists.length > 0) {
+        //     ListingMovies(listsMovies.lists)
+        // }
+    }, [recomendados])
+
     function goToDetail(data) {
-        navigation.navigate('DetailScreen', { params: data })
+        navigation.navigate('Detail', { params: data })
     }
 
     return listsMovies.lists.length > 0 ? (
@@ -61,6 +77,7 @@ export function HomeContainer(props) {
                 data={destaques}
                 banners={banners}
                 goTo={goToDetail}
+                recommend={recomendados}
             />
         </>
     ) : (

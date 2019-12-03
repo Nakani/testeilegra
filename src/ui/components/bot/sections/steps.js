@@ -35,9 +35,39 @@ export const getSteps = (setState, getState) => {
         {
             id: 'optionInit',
             options: [
-                { value: 1, label: 'Me conte sobre o projeto! 😍', trigger: 'end' },
+                { value: 1, label: 'Me conte sobre o projeto! 😍', trigger: 'aboutProject' },
                 { value: 3, label: 'preciso de ajuda!', trigger: 'outros' },
             ],
+        },
+
+        {
+            id: 'aboutProject',
+            message: 'Claro conto sim',
+            trigger: 'about1',
+        },
+
+        {
+            id: 'about1',
+            message: 'Projeto desenvolvido baseado em mini netflix!',
+            trigger: 'about2',
+        },
+
+        {
+            id: 'about2',
+            message: 'usado redux, Hooks e tudo mais',
+            trigger: 'about3',
+        },
+
+        {
+            id: 'about3',
+            message: 'tambem usado como estilo secundario Styled Components, foi usado assim mais para demonstração mesmo!',
+            trigger: 'aboutEnd',
+        },
+
+        {
+            id: 'aboutEnd',
+            message: 'e foi isso! obrigado pela chance!',
+            trigger: 'optionInit',
         },
 
         {

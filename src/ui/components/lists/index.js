@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import {
     View,
     Text,
@@ -15,37 +15,31 @@ import {
 
 function ItemList(item) {
     return (
-        <View style={Styles.itemCard}>
-            <ImageOverlay
-                source={{ uri: item.data.snippet.thumbnails.medium.url }}
-                title={item.data.snippet.title}
-                contentPosition="bottom"
-            />
-        </View>
+        <TouchableOpacity onPress={() => item.goTo(item.data.snippet)} style={{ flex: 1 }}>
+            <View style={Styles.itemCard}>
+                <ImageOverlay
+                    source={{ uri: item.data.snippet.thumbnails.medium.url }}
+                    title={item.data.snippet.title}
+                    contentPosition="bottom"
+                />
+            </View>
+
+        </TouchableOpacity>
     );
 }
 
 function ItemResult(item) {
     return (
-        <View style={Styles.itemResult}>
-            <ListItem thumbnail>
-                <Left>
-                    <Thumbnail
-                        square
-                        style={Styles.images}
-                        source={require('../../../assets/images/gettyimages-928648602-612x612.jpg')} />
-                </Left>
-                <Body>
-                    <Text>{item.data.title}</Text>
-                    <Text note numberOfLines={1}>Desconto de {item.data.discount}</Text>
-                </Body>
-                <Right>
-                    <Button transparent>
-                        <Text>Ver</Text>
-                    </Button>
-                </Right>
-            </ListItem>
-        </View >
+        <TouchableOpacity onPress={() => item.goTo(item.data)} style={{ flex: 1 }}>
+            <View style={Styles.itemCard}>
+                <ImageOverlay
+                    source={{ uri: item.data.thumbnails.medium.url }}
+                    title={item.data.title}
+                    contentPosition="bottom"
+                />
+            </View>
+
+        </TouchableOpacity>
     );
 }
 
@@ -55,20 +49,33 @@ function renderBody(props) {
             return (
                 <FlatList
                     data={props.data.lists}
-                    renderItem={({ item }) => <ItemList data={item} />}
+                    renderItem={({ item }) => <ItemList data={item} goTo={props.goTo} />}
                     keyExtractor={item => item.id}
                     style={{ flex: 1 }}
                     horizontal={true}
                 />
             )
             break;
-        case 'search':
+        case 'recommend':
             return (
                 <FlatList
                     data={props.data}
-                    renderItem={({ item }) => <ItemResult data={item} />}
+                    renderItem={({ item }) => <ItemResult data={item} goTo={props.goTo} />}
                     keyExtractor={item => item.id}
                     style={{ flex: 1 }}
+                    horizontal={true}
+                />
+            )
+            break;
+
+        case 'user':
+            return (
+                <FlatList
+                    data={props.data}
+                    renderItem={({ item }) => <ItemResult data={item} goTo={props.goTo} />}
+                    keyExtractor={item => item.id}
+                    style={{ flex: 1 }}
+                //horizontal={true}
                 />
             )
             break;
@@ -77,6 +84,7 @@ function renderBody(props) {
 }
 
 export function ListComponent(props) {
+
     return props.data.loaded == true ? (
         <View>
             <Text>

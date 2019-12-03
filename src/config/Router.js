@@ -23,6 +23,12 @@ const homeStack = createStackNavigator({
             header: null,
         },
     },
+    Detail: {
+        screen: DetailContainer,
+        navigationOptions: {
+            header: null,
+        },
+    },
 });
 
 const searchStack = createStackNavigator({
@@ -63,7 +69,7 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
 
 const TabNavigator = createBottomTabNavigator({
     Home: homeStack,
-    Search: searchStack,
+    //Search: searchStack,
     Chat: botStack,
     My: userStack,
 },
@@ -85,4 +91,4 @@ const TabNavigator = createBottomTabNavigator({
 
 );
 
-export default createAppContainer(TabNavigator);    
+export default createAppContainer(TabNavigator);

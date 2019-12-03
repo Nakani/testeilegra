@@ -11,7 +11,6 @@ import {
 import Swiper from 'react-native-swiper'
 
 function RenderImage(data) {
-    console.log(data.lists.snippet)
     return (
         <>
             <TouchableOpacity onPress={() => data.goTo(data.lists.snippet)} style={{ flex: 1 }}>

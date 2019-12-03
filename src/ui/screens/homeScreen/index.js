@@ -10,13 +10,15 @@ import {
     Category,
     Styles,
 } from './home.style'
-import { CategorySection } from './sections/category/index'
-import { BaseComponent, BannerComponent, ListComponent } from '../../components'
+import {
+    BaseComponent,
+    BannerComponent,
+    ListComponent,
+    LoadingComponent
+} from '../../components'
 
 export function HomeScreen(props) {
-
     function renderBanner(data) {
-        console.log('data', props)
         return (
             <View style={Styles.contentBanner}>
                 <BannerComponent data={data} goTo={props.goTo} />
@@ -26,22 +28,21 @@ export function HomeScreen(props) {
 
     function renderCategory(data) {
         return (
-            <ListComponent screen='home' data={data} />
+            <ListComponent screen='home' data={data} goTo={props.goTo} />
         )
     }
 
-
+    function renderRecommend(data) {
+        console.log('recommen', data)
+        return (
+            <ListComponent screen='recommend' data={data} goTo={props.goTo} />
+        )
+    }
 
     function renderHeader(data) {
         return (
             <ContentHeader>
                 {renderBanner(data)}
-                <Category>
-                    <TitleCategory>
-                        Categorias:
-                    </TitleCategory>
-                    <CategorySection />
-                </Category>
             </ContentHeader>
         )
     }
@@ -56,21 +57,20 @@ export function HomeScreen(props) {
                 <TitleCategory>
                     Recomendados:
                 </TitleCategory>
-                {/* {renderCategory()} */}
+                {renderRecommend(props.recommend)}
             </View>
         )
     }
-    console.log('homeAqui', props)
+
     return (
         <>
             <BaseComponent safeAreaView={false}>
                 <Container>
-                    <ScrollView>
-                        {renderHeader(props.banners)}
+                    {renderHeader(props.banners)}
+                    <ScrollView style={{ flex: 1 }}>
                         {renderBody(props.data)}
                     </ScrollView>
                 </Container>
-
             </BaseComponent>
         </>
     )

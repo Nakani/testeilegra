@@ -6,13 +6,14 @@ export const Styles = StyleSheet.create({
         flex: 1,
         //width: 150,
         // height: 100,
-        marginLeft: 15,
+        // marginLeft: 15,
+        paddingLeft: 5,
+        paddingRight: 5,
         resizeMode: 'contain',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         backgroundColor: '#fff',
         marginBottom: 30,
-        borderWidth: 1
     },
 
     textCategory: {

@@ -38,6 +38,7 @@ target 'App' do
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'react-native-dialogflow', :path => '../node_modules/react-native-dialogflow'
   pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
+  pod "youtube-ios-player-helper", "~> 0.1.4"
   target 'AppTests' do
     inherit! :search_paths
     # Pods for testing
