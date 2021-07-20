@@ -18,7 +18,7 @@
     "lottie-react-native": "^3.3.2",
     "native-base": "^2.13.8",
     "react": "16.9.0",
-    "react-native": "0.61.4",
+    "react-native": "0.62.3",
     "react-native-chatbot": "^0.0.1-alpha.12",
     "react-native-dialogflow": "^3.2.2",
     "react-native-elements": "^1.2.7",
